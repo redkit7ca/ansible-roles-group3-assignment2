@@ -1,0 +1,8 @@
+---
+users:
+- user1000
+- user2000
+
+groups: 
+- cloudadmins
+- wheel

@@ -1,0 +1,12 @@
+---
+disk_name: /dev/sdc # check lsblk for sdb
+first_number: 1
+second_number: 2
+file_system_x: xfs
+file_system_e: ext4
+
+first_target_path: /dev/sdc1
+second_target_path: /dev/sdc2
+
+first_mount_path: /part1
+second_mount_path: /part2

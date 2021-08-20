@@ -1,0 +1,20 @@
+---
+- name: Install and configure Apache
+  yum:
+    name: httpd
+    state: present
+  notify: restart_httpd
+
+- name: Add html file to the remote vm
+  template: 
+    src: "{{ src1 }}"
+    dest: "{{ destination }}"
+
+- name: get host name
+  shell: echo $HOSTNAME
+  register: result
+
+- name: Add host name to the html file
+  lineinfile: 
+    dest: /var/www/html/index.html
+    line: "{{ result.stdout }}"

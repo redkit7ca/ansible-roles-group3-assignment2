@@ -1,0 +1,17 @@
+---
+- name: create cloud admin group
+  group:
+    name: "{{ groups }}"
+
+- name: create two users and add two groups
+  user:
+    name: "{{ users }}"
+    groups: "{{ groups }}"
+    state: present
+
+- name: Create a SSH key for users  without passphrase
+  user:
+    name: "{{ users }}"
+    generate_ssh_key: yes
+    # ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa

@@ -1,0 +1,8 @@
+---
+# vm1: ansible-c-vm18496.canadacentral.cloudapp.azure.com
+# vm2: ansible-c-vm28496.canadacentral.cloudapp.azure.com
+src1: ~/auto/automation/ansible/roles/webserver/files/vm1.html
+src2: ~/auto/automation/ansible/roles/webserver/files/vm2.html
+destination: /var/www/html/index.html
+user: root
+mode: 0444

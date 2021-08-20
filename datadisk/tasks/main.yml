@@ -1,0 +1,50 @@
+---
+- name: Create a new primary partition with a size of 4GiB
+  parted:
+    device: "{{ disk_name }}"
+    number: "{{ first_number }}"
+    state: present
+    part_end: 4GiB
+
+- name: Create a new primary partition with a size of 5GiB
+  parted:
+    device: "{{ disk_name }}"
+    number: "{{ second_number }}"
+    state: present
+    part_end: 5GiB
+
+- name: Create a xfs filesystem 
+  filesystem:
+    fstype: "{{ file_system_x }}"
+    dev: "{{ first_target_path }}"
+    # force: yes
+
+- name: Create a ext2 filesystem 
+  filesystem:
+    fstype: "{{ file_system_e }}"
+    dev: "{{ second_target_path }}"
+
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ first_mount_path }}"
+    state: directory
+    mode: '0755'
+- name: Create a directory if it does not exist
+  file:
+    path: "{{ second_mount_path }}"
+    state: directory
+    mode: '0755'
+
+- name: Mount on part1
+  mount:
+    fstype: "{{ file_system_x }}"
+    src: "{{ first_target_path }}"
+    path: "{{ first_mount_path }}"
+    state: mounted
+
+- name: Mount on part2
+  mount:
+    fstype: "{{ file_system_e }}"
+    src: "{{ second_target_path }}"
+    path: "{{ second_mount_path }}"
+    state: mounted

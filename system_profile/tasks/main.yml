@@ -1,0 +1,8 @@
+---
+- name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config
+  blockinfile:
+    path: /etc/profile
+    insertafter: EOF
+    block: |
+      “#This is a test block added by Ansible……<auto>”
+      export TMOUT=1800
